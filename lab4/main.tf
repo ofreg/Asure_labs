@@ -82,10 +82,11 @@ module "nsg_secure" {
 
 #Task 4
 module "dns_public" {
-  source   = "./modules/dns_public"
-  rg_name  = var.rg_name
-  zone_name = "lab4-contoso.com"
+  source       = "./modules/dns_public"
+  rg_name      = var.rg_name
+  zone_name    = "lab4-contoso.com"
   ip_addresses = ["10.1.1.4"]
+  ttl          = var.ttl
 }
 
 module "dns_private" {
@@ -95,5 +96,6 @@ module "dns_private" {
   link_name   = "manufacturing-link"
   vnet_id     = module.vnet_manufacturing.id
   record_name = "sensorvm"
-  ip_addresses = ["10.1.1.4"]
+  ip_addresses= ["10.1.1.4"]
+  ttl         = var.ttl
 }

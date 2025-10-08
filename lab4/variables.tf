@@ -23,4 +23,11 @@ variable "vnet_address_space" {
   default = ["10.20.0.0/16"]
 }
 
-
+variable "ip_addresses" {
+  type    = list(string)
+  default = ["10.1.1.4"]
+}
+variable "ttl" {
+  type    = number
+  default = 1
+}

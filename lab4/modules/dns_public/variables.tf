@@ -8,10 +8,8 @@ variable "zone_name" {
 
 variable "ttl" {
   type    = number
-  default = 1
 }
 
 variable "ip_addresses" {
   type    = list(string)
-  default = ["10.1.1.4"]
 }
