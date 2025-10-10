@@ -13,3 +13,6 @@ output "subnet1_id" {
 output "subnet2_id" {
   value = azurerm_subnet.sub2.id
 }
+output "vnet_name" {
+  value = azurerm_virtual_network.vn.name
+}

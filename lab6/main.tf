@@ -6,9 +6,9 @@ module "rg" {
 }
 #Task 1
 module "vnet" {
-  source     = "./modules/vnet"
-  rg_name    = module.rg.rg_name
-  location   = var.location
+  source   = "./modules/vnet"
+  rg_name  = module.rg.rg_name
+  location = var.location
 }
 
 module "nsg" {
@@ -79,8 +79,18 @@ module "vm2" {
 
 #Task 2
 module "lb" {
-  source    = "./modules/lb"
-  rg_name   = module.rg.rg_name
-  location  = var.location
-  nic_ids   = [module.nic0.nic_id, module.nic1.nic_id]
+  source   = "./modules/lb"
+  rg_name  = module.rg.rg_name
+  location = var.location
+  nic_ids  = [module.nic0.nic_id, module.nic1.nic_id]
+}
+
+#Task 3
+module "appgw" {
+  source         = "./modules/appgw"
+  rg_name        = module.rg.rg_name
+  location       = var.location
+  vnet_name      = module.vnet.vnet_name
+  vm1_private_ip = module.nic1.private_ip_address
+  vm2_private_ip = module.nic2.private_ip_address
 }

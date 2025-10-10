@@ -4,8 +4,8 @@ variable "subscription_id" {
 }
 
 variable "location" {
-  type        = string
-  default     = "East US"
+  type    = string
+  default = "East US"
 }
 
 variable "rg_name" {
@@ -13,16 +13,16 @@ variable "rg_name" {
 }
 
 variable "admin_username" {
-  type        = string
-  default     = "localadmin"
+  type    = string
+  default = "localadmin"
 }
 
 variable "admin_password" {
-  type        = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 variable "vm_size" {
-  type        = string
-  default     = "Standard_B1s"
+  type    = string
+  default = "Standard_B1s"
 }
