@@ -69,7 +69,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   url_path_map {
     name                              = "az104-pathmap"
-    default_backend_address_pool_name = "az104-appgwbe"
+    default_backend_address_pool_name  = "az104-appgwbe"
     default_backend_http_settings_name = "default-http-settings"
 
     path_rule {
@@ -88,10 +88,10 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   request_routing_rule {
-    name                      = "az104-gwrule"
-    rule_type                 = "PathBasedRouting"
-    http_listener_name        = "az104-listener"
-    url_path_map_name         = "az104-pathmap"
-    priority                  = 10
+    name               = "az104-gwrule"
+    rule_type          = "PathBasedRouting"
+    http_listener_name = "az104-listener"
+    url_path_map_name  = "az104-pathmap"
+    priority           = 10
   }
 }
