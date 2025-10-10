@@ -9,7 +9,7 @@ lab2a/
 lab2b/
 lab3/
 lab4/
-
+lab5/
 *.auto.tfvars
 terraform.tfvars
 secret_data.tfvars
