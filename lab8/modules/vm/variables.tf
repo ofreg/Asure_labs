@@ -30,3 +30,12 @@ variable "nic_id" {
 variable "availability_zone" {
   type = string
 }
+
+variable "data_disks" {
+  type = list(object({
+    name         = string
+    size_gb      = number
+    storage_type = string
+  }))
+  default = []
+}

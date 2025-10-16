@@ -21,3 +21,12 @@ variable "rg_name" {
   type    = string
   default = "az104-rg8"
 }
+variable "vm1_size" {
+  type    = string
+  default = "D2ds_v4"
+}
+
+variable "vm2_size" {
+  type    = string
+  default = "Standard_D2s_v3"
+}
