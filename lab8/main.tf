@@ -95,3 +95,46 @@ module "vmss1" {
   availability_zones = ["1","2","3"]
   instance_count     = 2
 }
+
+
+
+
+module "nic_psvm" {
+  source    = "./modules/nic"
+  nic_name  = "nic-psvm"
+  location  = var.location
+  rg_name   = module.rg.rg_name
+  subnet_id = module.network.subnet_id
+  nsg_id    = module.network.nsg_id
+}
+
+module "myPSVM" {
+  source            = "./modules/vm_windows"
+  vm_name           = "myPSVM"
+  location          = var.location_2
+  rg_name           = module.rg.rg_name
+  admin_username    = var.admin_username
+  admin_password    = var.admin_password
+  nic_id            = module.nic_psvm.nic_id
+  availability_zone = "1"
+}
+
+module "nic_clivm" {
+  source    = "./modules/nic"
+  nic_name  = "nic-clivm"
+  location  = var.location_2
+  rg_name   = module.rg.rg_name
+  subnet_id = module.network.subnet_id
+  nsg_id    = module.network.nsg_id
+}
+
+module "myCLIVM" {
+  source            = "./modules/vm_linux"
+  vm_name           = "myCLIVM"
+  location          = var.location
+  rg_name           = module.rg.rg_name
+  admin_username    = var.admin_username
+  admin_password    = var.admin_password
+  nic_id            = module.nic_clivm.nic_id
+  availability_zone = "1"
+}

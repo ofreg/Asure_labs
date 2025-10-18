@@ -11,7 +11,10 @@ variable "location" {
   type    = string
   default = "canadacentral"
 }
-
+variable "location_2" {
+  type    = string
+  default = "polandcentral"
+}
 variable "subscription_id" {
   type      = string
   sensitive = true
@@ -23,10 +26,10 @@ variable "rg_name" {
 }
 variable "vm1_size" {
   type    = string
-  default = "D2ds_v4"
+  default = "Standard_B1ls"
 }
 
 variable "vm2_size" {
   type    = string
-  default = "Standard_D2s_v3"
+  default = "Standard_B1ls"
 }
