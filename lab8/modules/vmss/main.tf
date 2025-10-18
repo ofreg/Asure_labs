@@ -1,55 +1,33 @@
-resource "azurerm_virtual_machine_scale_set" "vmss1" {
-  name                = var.vmss_name
-  location            = var.location
-  resource_group_name = var.rg_name
-  overprovision       = true
-  upgrade_policy_mode  = "Manual"
-  zones               = var.availability_zones
+  resource "azurerm_windows_virtual_machine_scale_set" "vmss1" {
+    name                = var.vmss_name
+    location            = var.location
+    resource_group_name = var.rg_name
+    zones               = var.availability_zones
+    overprovision       = true
+    admin_username      = var.admin_username
+    admin_password      = var.admin_password
+    instances           = var.instance_count
+    sku                 = var.vm_size
 
-  sku {
-    name     = var.vm_size       # наприклад "Standard_D2s_v3"
-    capacity = var.instance_count
-    tier     = "Standard"
-  }
+    source_image_reference {
+      publisher = "MicrosoftWindowsServer"
+      offer     = "windowsserver-gen2preview"
+      sku       = "2019-datacenter-gen2"
+      version   = "2019.0.20190620"
+    }
 
-  network_profile {
-    name    = "vmss-network"
-    primary = true
+    os_disk {
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+    }
 
-    ip_configuration {
-      name                                   = "ipconfig1"
-      subnet_id                              = var.subnet_id
-      load_balancer_backend_address_pool_ids = [var.lb_backend_pool_id]
-      primary                                = true
-
-      public_ip_address_configuration {
-        name              = "vmss-pip"
-        idle_timeout      = 10
-        domain_name_label = "vmss1label" # унікальний піддомен
+    network_interface {
+      name    = "nic"
+      primary = true
+      ip_configuration {
+        name                                   = "ipconfig1"
+        subnet_id                              = var.subnet_id
+        load_balancer_backend_address_pool_ids = [var.lb_backend_pool_id]
       }
     }
   }
-
-  os_profile {
-    computer_name_prefix = "vmss1"
-    admin_username       = var.admin_username
-    admin_password       = var.admin_password
-  }
-
-  os_profile_windows_config {
-    provision_vm_agent = true
-  }
-
-  storage_profile_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-Datacenter-Gen2"
-    version   = "latest"
-  }
-
-  storage_profile_os_disk {
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
-  }
-}

@@ -31,7 +31,7 @@ module "vm1" {
   vm_name           = "az104-vm1"
   location          = var.location
   rg_name           = module.rg.rg_name
-  vm_size           = "Standard_D2ds_v4"
+  vm_size           = "Standard_B1ls"
   admin_username    = var.admin_username
   admin_password    = var.admin_password
   nic_id            = module.nic_vm1.nic_id
@@ -58,7 +58,7 @@ module "vm2" {
   vm_name           = "az104-vm2"
   location          = var.location
   rg_name  = module.rg.rg_name   
-  vm_size           = "Standard_D2s_v3"
+  vm_size           = "Standard_B1ls"
   admin_username    = var.admin_username
   admin_password    = var.admin_password
   nic_id            = module.nic_vm2.nic_id
@@ -87,7 +87,7 @@ module "vmss1" {
   vmss_name         = "vmss1"
   location          = var.location
   rg_name           = module.rg.rg_name
-  vm_size           = "Standard_D2s_v3"
+  vm_size           = "Standard_B1ls"
   admin_username    = var.admin_username
   admin_password    = var.admin_password
   subnet_id         = module.network.subnet_id
