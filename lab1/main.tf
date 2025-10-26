@@ -23,5 +23,4 @@ module "group" {
   display_name = "IT Lab Administrators"
   lab_user_id  = module.user.user_object_id
   external_user_id = module.invitation.user_id
-  
 }
