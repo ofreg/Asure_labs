@@ -9,12 +9,9 @@ variable "rg_name" {
 
 variable "location" {
   type        = string
-  default     = "East US"
+  default = "polandcentral"
 }
 
-variable "disk_name" {
-  type        = string
-}
 
 variable "disk_size_gb" {
   type        = number
